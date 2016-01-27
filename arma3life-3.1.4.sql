@@ -10,8 +10,10 @@ SET time_zone = "+00:00";
 --
 -- Database: `arma3life`
 -- Default Schema
+-- Author: Tonic?
+-- Edited by Heisen
 --
-CREATE DATABASE IF NOT EXISTS `arma3life` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `arma3life` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci; --arma3life
 USE `arma3life`;
 
 DELIMITER $$
