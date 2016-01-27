@@ -1,6 +1,6 @@
-author = "Tonic";
-onLoadName = "Altis Life RPG v3.1.4.8";
-onLoadMission = "A RPG game mode developed by Tonic";
+author = "Tonic/Heisen";
+onLoadName = "Altis Life Remastered"; // Original: Altis Life RPG v3.1.4.8
+onLoadMission = "A RPG game mode developed by Tonic. Edited by: Heisen";
 joinUnassigned = 1;
 respawn = BASE;
 respawndelay = 5;
