@@ -219,6 +219,7 @@ class Life_Client_Core
 		class saveGear {};
 		class loadGear {};
 		class stripDownPlayer {};
+		class abortEnabled {};
 	};
 	
 	class Network
