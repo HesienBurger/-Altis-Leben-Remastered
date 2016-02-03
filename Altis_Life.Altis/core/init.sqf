@@ -5,8 +5,28 @@
 life_firstSpawn = true;
 life_session_completed = false;
 private["_handle","_timeStamp"];
-0 cutText["Setting up client, please wait...","BLACK FADED"];
-0 cutFadeOut 9999999;
+
+_LoadMsg = {
+	[
+		format["<t size='1.3' color='#5600FF'>%1</t><br/>%2",_this select 0, _this select 1],
+		0,
+		0.2,
+		99999999999999,
+		0,
+		0,
+		8
+	] spawn BIS_fnc_dynamicText;
+};
+
+// 0 cutText["Setting up client, please wait...","BLACK FADED"];
+// 0 cutFadeOut 9999999;
+
+5 cutRsc ["SplashNoise","BLACK"];
+
+["Setting up client","Your client is currently loading ArmA RPG. Please wait..."] call _LoadMsg;
+
+
+
 _timeStamp = diag_tickTime;
 diag_log "------------------------------------------------------------------------------------------------------";
 diag_log "--------------------------------- Starting Altis Life Client Init ----------------------------------";
@@ -33,22 +53,27 @@ switch (playerSide) do {
 		life_paycheck = LIFE_SETTINGS(getNumber,"paycheck_med");
 	};
 };
-
 diag_log "::Life Client:: Variables initialized";
 diag_log "::Life Client:: Setting up Eventhandlers";
+["Setting up Event Handlers","Creating essential event handlers to operation."] call _LoadMsg;
 [] call life_fnc_setupEVH;
 
 diag_log "::Life Client:: Eventhandlers completed";
 diag_log "::Life Client:: Setting up user actions";
+["Setting up Actions","Creating essential actions. Please wait..."] call _LoadMsg;
 [] call life_fnc_setupActions;
 
 diag_log "::Life Client:: User actions completed";
 diag_log "::Life Client:: Waiting for server functions to transfer..";
+
+["Receiving serverside functions.","Your client is downloading functions from the server."] call _LoadMsg;
+
 waitUntil {(!isNil {TON_fnc_clientGangLeader})};
 
 diag_log "::Life Client:: Received server functions.";
-0 cutText ["Waiting for the server to be ready...","BLACK FADED"];
-0 cutFadeOut 99999999;
+["Waiting for server...","The server is still setting up, please wait."] call _LoadMsg;
+//0 cutText ["Waiting for the server to be ready...","BLACK FADED"];
+//0 cutFadeOut 99999999;
 
 diag_log "::Life Client:: Waiting for the server to be ready..";
 waitUntil{!isNil "life_server_isReady"};
@@ -59,11 +84,16 @@ if(!isNil "life_server_extDB_notLoaded" && {life_server_extDB_notLoaded != ""}) 
 	999999 cutText [life_server_extDB_notLoaded,"BLACK FADED"];
 	999999 cutFadeOut 99999999;
 };
-
+["Loading gear from server...","You are currently in the login queue, this should not take too long. Please wait..."] call _LoadMsg;
 [] call SOCK_fnc_dataQuery;
 waitUntil {life_session_completed};
-0 cutText["Finishing client setup procedure","BLACK FADED"];
-0 cutFadeOut 9999999;
+["Finished Receiving Data","Data received, Welcome to ArmA RPG!"] call _LoadMsg;
+5 cutFadeOut 5;
+sleep 2;
+["",""] call _LoadMsg;
+// LoadMsg text finishes here
+//0 cutText["Finishing client setup procedure","BLACK FADED"];
+//0 cutFadeOut 9999999;
 
 //diag_log "::Life Client:: Group Base Execution";
 [] spawn life_fnc_escInterupt;
