@@ -140,10 +140,12 @@ class life_admin_menu {
 				class extra_left_1: Life_RscButtonMenu
 				{
 					idc = 2404;
+					//text = "Delete Target"; //--- ToDo: Localize;
 					x = -2.5 * GUI_GRID_W + GUI_GRID_X;
 					y = 13 * GUI_GRID_H + GUI_GRID_Y;
 					w = 8 * GUI_GRID_W;
 					h = 1 * GUI_GRID_H;
+					//onButtonClick = "[] call life_fnc_admingetID;";
 				};
 				class extra_left_2: Life_RscButtonMenu
 				{
@@ -204,10 +206,12 @@ class life_admin_menu {
 				class extra_right_1: Life_RscButtonMenu
 				{
 					idc = 2411;
+					//text = "VA"; //--- ToDo: Localize;
 					x = 34 * GUI_GRID_W + GUI_GRID_X;
 					y = 13 * GUI_GRID_H + GUI_GRID_Y;
 					w = 8 * GUI_GRID_W;
 					h = 1 * GUI_GRID_H;
+					//onButtonClick = "[] call life_fnc_virtualA;";
 				};
 				class extra_right_2: Life_RscButtonMenu
 				{
