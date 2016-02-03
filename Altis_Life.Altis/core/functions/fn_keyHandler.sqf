@@ -240,6 +240,12 @@ switch (_code) do {
 			};
 		};
 	};
+	// 4 Num Key | Shift + 4 | HotKey for Admin Menu -- Added by Heisen
+	case 5: {
+		if(_shift && FETCH_CONST(life_adminlevel) < 1) then {
+		createDialog "life_admin_menu";
+		};
+	};
 };
 
 _handled;
