@@ -293,7 +293,7 @@ class playerSettings {
 			idc = 2021;
 			text = "$STR_PM_AdminMenu";
 			onButtonClick = "createDialog ""life_admin_menu"";";
-			x = 0.1 + (14 / 22) + (1 / 250 / (safezoneW / safezoneH));
+			x = 0.1 + (6.25 / 40) + (1 / 250 / (safezoneW / safezoneH));
 			y = 0.805;
 			w = (6.25 / 40);
 			h = (1 / 25);
@@ -308,36 +308,6 @@ class playerSettings {
 			y = 0.805;
 			w = (6.25 / 40);
 			h = (1 / 25);
-		};
-		
-		class ButtonIDCard : Life_RscButtonMenu {
-			idc = 2024;
-			text = "COMING SOON";
-			onButtonClick = "";
-			x = 0.1 + (6.25 / 40) + (1 / 250 / (safezoneW / safezoneH));
-			y = 0.805;
-			w = (6.25 / 40);
-			h = (1 / 25);
-		};
-		
-		class WEBSITE: Life_RscButtonMenu
-		{
-			idc = 1600;
-			text = "WEBSITE"; //--- ToDo: Localize;
-			x = -28.5 * GUI_GRID_W + GUI_GRID_X;
-			y = 34 * GUI_GRID_H + GUI_GRID_Y;
-			w = 7.5 * GUI_GRID_W;
-			h = 1.5 * GUI_GRID_H;
-		};
-		
-		class RULES: Life_RscButtonMenu
-		{
-			idc = 1601;
-			text = "RULES"; //--- ToDo: Localize;
-			x = -20 * GUI_GRID_W + GUI_GRID_X;
-			y = 34 * GUI_GRID_H + GUI_GRID_Y;
-			w = 7.5 * GUI_GRID_W;
-			h = 1.5 * GUI_GRID_H;
 		};
 	};
 };

@@ -1,1 +1,0 @@
-For help with customizing and setting up a server please visit the website: www.altisliferpg.com

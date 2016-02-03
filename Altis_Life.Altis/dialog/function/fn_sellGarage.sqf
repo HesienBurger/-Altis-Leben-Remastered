@@ -1,4 +1,4 @@
-#include <macro.h>
+#include "..\..\script_macros.hpp"
 /*
 	File: fn_sellGarage.sqf
 	Author: Bryan "Tonic" Boardwine
@@ -6,22 +6,33 @@
 	Description:
 	Sells a vehicle from the garage.
 */
-private["_vehicle","_vid","_pid","_unit","_price"];
+private["_vehicle","_vehicleLife","_vid","_pid","_unit","_sellPrice"];
 disableSerialization;
-if(lbCurSel 2802 == -1) exitWith {hint localize "STR_Global_NoSelection"};
+if(EQUAL(lbCurSel 2802,-1)) exitWith {hint localize "STR_Global_NoSelection"};
 _vehicle = lbData[2802,(lbCurSel 2802)];
 _vehicle = (call compile format["%1",_vehicle]) select 0;
+_vehicleLife = _vehicle;
 _vid = lbValue[2802,(lbCurSel 2802)];
-_pid = getPlayerUID player;
+_pid = steamid;
 _unit = player;
 
 if(isNil "_vehicle") exitWith {hint localize "STR_Garage_Selection_Error"};
+if((time - life_action_delay) < 1.5) exitWith {hint localize "STR_NOTF_ActionDelay";};
+if(!isClass (missionConfigFile >> CONFIG_LIFE_VEHICLES >> _vehicleLife)) then {
+	_vehicleLife = "Default"; //Use Default class if it doesn't exist
+	diag_log format["%1: LifeCfgVehicles class doesn't exist",_vehicle];
+};
 
-_price = [_vehicle,__GETC__(life_garage_sell)] call TON_fnc_index;
-if(_price == -1) then {_price = 1000;} else {_price = (__GETC__(life_garage_sell) select _price) select 1;};
+_sellPrice = switch(playerSide) do {
+	case civilian: {SEL(M_CONFIG(getArray,CONFIG_LIFE_VEHICLES,_vehicleLife,"garageSell"),0)};
+	case west: {SEL(M_CONFIG(getArray,CONFIG_LIFE_VEHICLES,_vehicleLife,"garageSell"),1)};
+	case independent: {SEL(M_CONFIG(getArray,CONFIG_LIFE_VEHICLES,_vehicleLife,"garageSell"),2)};
+	case east: {SEL(M_CONFIG(getArray,CONFIG_LIFE_VEHICLES,_vehicleLife,"garageSell"),3)};
+};
 
-[[_vid,_pid,_price,player,life_garage_type],"TON_fnc_vehicleDelete",false,false] spawn life_fnc_MP;
-hint format[localize "STR_Garage_SoldCar",[_price] call life_fnc_numberText];
-life_atmcash = life_atmcash + _price;
-
+if(!(EQUAL(typeName _sellPrice,typeName 0)) OR _sellPrice < 1) then {_sellPrice = 1000};
+[_vid,_pid,_sellPrice,player,life_garage_type] remoteExecCall ["TON_fnc_vehicleDelete",RSERV];
+hint format[localize "STR_Garage_SoldCar",[_sellPrice] call life_fnc_numberText];
+ADD(BANK,_sellPrice);
+life_action_delay = time;
 closeDialog 0;

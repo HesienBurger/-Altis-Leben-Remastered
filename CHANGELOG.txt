@@ -1,4 +1,0 @@
-Alits Life Remastered V0.0.1
-----------------------------
-
-ADDED: More cop levels into the database (Default 0-7 | New 0-12 ).
