@@ -23,7 +23,7 @@ _LoadMsg = {
 
 5 cutRsc ["SplashNoise","BLACK"];
 
-["Setting up client","Your client is currently loading ArmA RPG. Please wait..."] call _LoadMsg;
+["Setting up client","Your client is currently loading ASGLife.co.uk . Please wait..."] call _LoadMsg;
 
 
 
@@ -87,7 +87,7 @@ if(!isNil "life_server_extDB_notLoaded" && {life_server_extDB_notLoaded != ""}) 
 ["Loading gear from server...","You are currently in the login queue, this should not take too long. Please wait..."] call _LoadMsg;
 [] call SOCK_fnc_dataQuery;
 waitUntil {life_session_completed};
-["Finished Receiving Data","Data received, Welcome to ArmA RPG!"] call _LoadMsg;
+["Finished Receiving Data","Data received, Welcome to ASGLife.co.uk!"] call _LoadMsg;
 5 cutFadeOut 5;
 sleep 2;
 ["",""] call _LoadMsg;
