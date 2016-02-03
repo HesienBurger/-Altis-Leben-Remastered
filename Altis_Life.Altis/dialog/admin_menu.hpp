@@ -1,3 +1,238 @@
+// By: Heisen
+
+class life_admin_menu {
+	idd = 2900;
+	name= "life_admin_menu";
+	movingEnable = false;
+	enableSimulation = true;
+	onLoad = "[] spawn life_fnc_adminMenu;";
+
+	class controlsBackground {
+			class back: Life_RscText
+			{
+				idc = 1000;
+				x = 6.5 * GUI_GRID_W + GUI_GRID_X;
+				y = 6.5 * GUI_GRID_H + GUI_GRID_Y;
+				w = 26.5 * GUI_GRID_W;
+				h = 11 * GUI_GRID_H;
+				colorBackground[] = {0,0,0,0.7};
+			};
+			class back_top: Life_RscText
+			{
+				idc = 1001;
+				x = 6.5 * GUI_GRID_W + GUI_GRID_X;
+				y = 5.5 * GUI_GRID_H + GUI_GRID_Y;
+				w = 26.5 * GUI_GRID_W;
+				h = 1 * GUI_GRID_H;
+				colorBackground[] = {45,0,0,0.7};
+			};
+	};
+
+	class controls {
+
+
+				class text: Life_RscText
+				{
+					idc = 1002;
+					text = "Admin Panel"; //--- ToDo: Localize;
+					x = 16.4 * GUI_GRID_W + GUI_GRID_X;
+					y = 5.3 * GUI_GRID_H + GUI_GRID_Y;
+					w = 11 * GUI_GRID_W;
+					h = 1.5 * GUI_GRID_H;
+				};
+				class PlayerList_Admin: Life_RscListbox
+				{
+					idc = 1500;
+					x = 7.5 * GUI_GRID_W + GUI_GRID_X;
+					y = 7 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8.5 * GUI_GRID_W;
+					h = 10 * GUI_GRID_H;
+					colorBackground[] = {0,0,0,0.7};
+					onLBSelChanged = "[_this] spawn life_fnc_adminQuery";
+				};
+				class PlayerBInfo: Life_RscStructuredText
+				{
+					idc = 1100;
+					x = 16.5 * GUI_GRID_W + GUI_GRID_X;
+					y = 7 * GUI_GRID_H + GUI_GRID_Y;
+					w = 16 * GUI_GRID_W;
+					h = 10 * GUI_GRID_H;
+					colorBackground[] = {0,0,0,0.7};
+				};
+				class left_back: Life_RscText
+				{
+					idc = 1003;
+					x = -3 * GUI_GRID_W + GUI_GRID_X;
+					y = 6.5 * GUI_GRID_H + GUI_GRID_Y;
+					w = 9 * GUI_GRID_W;
+					h = 11 * GUI_GRID_H;
+					colorBackground[] = {0,0,0,0.7};
+				};
+				class right_back: Life_RscText
+				{
+					idc = 1004;
+					x = 33.5 * GUI_GRID_W + GUI_GRID_X;
+					y = 6.5 * GUI_GRID_H + GUI_GRID_Y;
+					w = 9 * GUI_GRID_W;
+					h = 11 * GUI_GRID_H;
+					colorBackground[] = {0,0,0,0.7};
+				};
+				class left_top_back: Life_RscText
+				{
+					idc = 1005;
+					text = "Player Functions"; //--- ToDo: Localize;
+					x = -3 * GUI_GRID_W + GUI_GRID_X;
+					y = 5.5 * GUI_GRID_H + GUI_GRID_Y;
+					w = 9 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					colorBackground[] = {45,0,0,0.7};
+				};
+				class right_top_back: Life_RscText
+				{
+					idc = 1006;
+					text = "Your Functions"; //--- ToDo: Localize;
+					x = 33.5 * GUI_GRID_W + GUI_GRID_X;
+					y = 5.5 * GUI_GRID_H + GUI_GRID_Y;
+					w = 9 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					colorBackground[] = {45,0,0,0.7};
+				};
+				class Compensate: Life_RscButtonMenu
+				{
+					idc = 2400;
+					text = "Compensate"; //--- ToDo: Localize;
+					x = -2.5 * GUI_GRID_W + GUI_GRID_X;
+					y = 7 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					onButtonClick = "createDialog ""Life_Admin_Compensate"";";
+				};
+				class Spectate: Life_RscButtonMenu
+				{
+					idc = 2401;
+					text = "Spectate"; //--- ToDo: Localize;
+					x = -2.5 * GUI_GRID_W + GUI_GRID_X;
+					y = 8.5 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					onButtonClick = "[] call life_fnc_adminSpectate;";
+				};
+				class Freeze: Life_RscButtonMenu
+				{
+					idc = 2402;
+					text = "Freeze"; //--- ToDo: Localize;
+					x = -2.5 * GUI_GRID_W + GUI_GRID_X;
+					y = 10 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					onButtonClick = "[] call life_fnc_adminFreeze;";
+				};
+				class AdminID: Life_RscButtonMenu
+				{
+					idc = 2403;
+					text = "AdminID"; //--- ToDo: Localize;
+					x = -2.5 * GUI_GRID_W + GUI_GRID_X;
+					y = 11.5 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					onButtonClick = "[] call life_fnc_admingetID;";
+				};
+				class extra_left_1: Life_RscButtonMenu
+				{
+					idc = 2404;
+					x = -2.5 * GUI_GRID_W + GUI_GRID_X;
+					y = 13 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class extra_left_2: Life_RscButtonMenu
+				{
+					idc = 2405;
+					x = -2.5 * GUI_GRID_W + GUI_GRID_X;
+					y = 14.5 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class extra_left_3: Life_RscButtonMenu
+				{
+					idc = 2406;
+					x = -2.5 * GUI_GRID_W + GUI_GRID_X;
+					y = 16 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class God: Life_RscButtonMenu
+				{
+					idc = 2407;
+					text = "God [On/Off]"; //--- ToDo: Localize;
+					x = 34 * GUI_GRID_W + GUI_GRID_X;
+					y = 7 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					onButtonClick = "[] call life_fnc_adminGodMode;";
+				};
+				class Markers: Life_RscButtonMenu
+				{
+					idc = 2408;
+					text = "Markers"; //--- ToDo: Localize;
+					x = 34 * GUI_GRID_W + GUI_GRID_X;
+					y = 8.5 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					onButtonClick = "[] spawn life_fnc_adminMarkers;";
+				};
+				class Teleport: Life_RscButtonMenu
+				{
+					idc = 2409;
+					text = "Teleport"; //--- ToDo: Localize;
+					x = 34 * GUI_GRID_W + GUI_GRID_X;
+					y = 10 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					onButtonClick = "[] call life_fnc_adminTeleport; hint 'Select where you would like to teleport';";
+				};
+				class TeleportHere: Life_RscButtonMenu
+				{
+					idc = 2410;
+					text = "Teleport Here"; //--- ToDo: Localize;
+					x = 34 * GUI_GRID_W + GUI_GRID_X;
+					y = 11.5 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					onButtonClick = "[] call life_fnc_adminTpHere;";
+				};
+				class extra_right_1: Life_RscButtonMenu
+				{
+					idc = 2411;
+					x = 34 * GUI_GRID_W + GUI_GRID_X;
+					y = 13 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class extra_right_2: Life_RscButtonMenu
+				{
+					idc = 2412;
+					x = 34 * GUI_GRID_W + GUI_GRID_X;
+					y = 14.5 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class Debug: Life_RscButtonMenu
+				{
+					idc = 2413;
+					text = "Debug"; //--- ToDo: Localize;
+					x = 34 * GUI_GRID_W + GUI_GRID_X;
+					y = 16 * GUI_GRID_H + GUI_GRID_Y;
+					w = 8 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					onButtonClick = "[] call life_fnc_adminDebugCon;";
+				};
+	};
+};
+
+
+
+/*
 class life_admin_menu {
 	idd = 2900;
 	name= "life_admin_menu";
