@@ -180,12 +180,14 @@ class playerSettings {
 			h = (1 / 25);
 			
 		};
-		
+		////////////////
+		// Need's Testing...
+		////////////////
 		class RemoveButton : life_RscButtonMenu {
 			
-			text = "$STR_Global_Remove";
+			text = "Drop Item"; // text = "$STR_Global_Remove";
 			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.3843])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.7019])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.8862])", 0.5};
-			onButtonClick = "[] call life_fnc_removeItem;";
+			onButtonClick = "[] call life_fnc_dropItems;"; // onButtonClick = "[] call life_fnc_removeItem;";
 			
 			x = 0.475;
 			y = 0.70;
@@ -193,6 +195,9 @@ class playerSettings {
 			h = (1 / 25);
 			
 		};
+		////////////////
+		//
+		////////////////
 		/*
 		Disabled till it can be redone
 		class DropcButton : life_RscButtonMenu {
